@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "author": "Security AI",
+  "editor": "wokwi",
+  "firmware": ".pio/build/esp32doit-devkit-v1/firmware.bin",
+  "elf": ".pio/build/esp32doit-devkit-v1/firmware.elf",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": -90, "left": -60, "attrs": {} },
+    { "type": "wokwi-slide-switch", "id": "door1", "top": -90, "left": 80, "attrs": { "label": "Door" } },
+    { "type": "wokwi-led", "id": "led1", "top": 60, "left": 130, "attrs": { "color": "red" } },
+    { "type": "wokwi-buzzer", "id": "buzz1", "top": 60, "left": 200, "attrs": { "volume": "0.1" } },
+    { "type": "wokwi-pushbutton", "id": "btnArm", "top": 120, "left": -50, "attrs": { "color": "blue", "label": "ARM/DISARM" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 100, "left": 130, "attrs": { "value": "220" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    
+    [ "pir1:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "pir1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "pir1:OUT", "esp:13", "purple", [ "v0" ] ],
+
+    [ "door1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "door1:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "door1:SIG", "esp:15", "green", [ "v0" ] ],
+
+    [ "led1:A", "esp:2", "red", [ "v0" ] ],
+    [ "led1:C", "r1:1", "black", [ "v0" ] ],
+    [ "r1:2", "esp:GND.3", "black", [ "v0" ] ],
+
+    [ "buzz1:2", "esp:GND.3", "black", [ "v0" ] ],
+    [ "buzz1:1", "esp:4", "orange", [ "v0" ] ],
+
+    [ "btnArm:2.l", "esp:GND.1", "black", [ "h0" ] ],
+    [ "btnArm:1.l", "esp:12", "cyan", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}

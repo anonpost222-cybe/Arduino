@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "author": "Student Speedrunner",
+  "editor": "wokwi",
+  "firmware": ".pio/build/esp32doit-devkit-v1/firmware.bin",
+  "elf": ".pio/build/esp32doit-devkit-v1/firmware.elf",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "board-ssd1306",
+      "id": "oled",
+      "top": -85.24,
+      "left": 9.92,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    {
+      "type": "wokwi-mpu6050",
+      "id": "gyro",
+      "top": 109.2,
+      "left": 9.92,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "oled:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "oled:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "oled:SDA", "esp:21", "purple", [ "v0" ] ],
+    [ "oled:SCL", "esp:22", "cyan", [ "v0" ] ],
+    [ "gyro:VCC", "esp:3V3", "red", [ "v20", "h-40" ] ],
+    [ "gyro:GND", "esp:GND.2", "black", [ "v30", "h-40" ] ],
+    [ "gyro:SDA", "esp:21", "purple", [ "v40", "h-50", "v-200" ] ],
+    [ "gyro:SCL", "esp:22", "cyan", [ "v50", "h-60", "v-200" ] ]
+  ],
+  "dependencies": {}
+}

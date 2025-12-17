@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "author": "Security Architect",
+  "editor": "wokwi",
+  "firmware": ".pio/build/esp32doit-devkit-v1/firmware.bin",
+  "elf": ".pio/build/esp32doit-devkit-v1/firmware.elf",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-mpu6050", "id": "gyro", "top": -80, "left": 50, "attrs": {} },
+    { "type": "wokwi-servo", "id": "lock", "top": 80, "left": 150, "attrs": {} },
+    { "type": "wokwi-buzzer", "id": "buzz", "top": -60, "left": 200, "attrs": { "volume": "0.1" } },
+    { "type": "wokwi-pushbutton", "id": "btn", "top": 120, "left": -50, "attrs": { "color": "green", "label": "Reset" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    
+    [ "gyro:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "gyro:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "gyro:SDA", "esp:21", "purple", [ "v0" ] ],
+    [ "gyro:SCL", "esp:22", "cyan", [ "v0" ] ],
+
+    [ "lock:V+", "esp:5V", "red", [ "v0" ] ],
+    [ "lock:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "lock:PWM", "esp:13", "orange", [ "v0" ] ],
+
+    [ "buzz:2", "esp:GND.3", "black", [ "v0" ] ],
+    [ "buzz:1", "esp:15", "red", [ "v0" ] ],
+
+    [ "btn:2.l", "esp:GND.1", "black", [ "h0" ] ],
+    [ "btn:1.l", "esp:4", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}

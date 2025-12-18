@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "author": "Smart Motor MVP",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "board-ssd1306", "id": "oled", "top": -80, "left": 50, "attrs": { "i2cAddress": "0x3c" } },
+    { "type": "wokwi-mpu6050", "id": "gyro", "top": 100, "left": -60, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht", "top": 100, "left": 60, "attrs": {} },
+    { "type": "wokwi-led", "id": "ledAlarm", "top": 0, "left": 150, "attrs": { "color": "red", "label": "FAULT" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 50, "left": 150, "attrs": { "value": "220" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "oled:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "oled:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "oled:SDA", "esp:21", "purple", [ "v0" ] ],
+    [ "oled:SCL", "esp:22", "cyan", [ "v0" ] ],
+    [ "gyro:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "gyro:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "gyro:SDA", "esp:21", "purple", [ "v0" ] ],
+    [ "gyro:SCL", "esp:22", "cyan", [ "v0" ] ],
+    [ "dht:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "dht:GND", "esp:GND.3", "black", [ "v0" ] ],
+    [ "dht:SDA", "esp:15", "green", [ "v0" ] ],
+    [ "ledAlarm:A", "esp:2", "red", [ "v0" ] ],
+    [ "ledAlarm:C", "r1:1", "black", [ "v0" ] ],
+    [ "r1:2", "esp:GND.3", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

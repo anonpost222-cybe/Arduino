@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "author": "Demining Bot",
+  "editor": "wokwi",
+  "firmware": ".pio/build/esp32doit-devkit-v1/firmware.bin",
+  "elf": ".pio/build/esp32doit-devkit-v1/firmware.elf",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-hc-sr04", "id": "sonic", "top": -80, "left": 60, "attrs": {} },
+    { "type": "wokwi-servo", "id": "arm", "top": 80, "left": 150, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "camSim", "top": 100, "left": -60, "attrs": { "label": "AI Camera Confidence" } },
+    { "type": "wokwi-buzzer", "id": "buzz", "top": -30, "left": 200, "attrs": { "volume": "0.1" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "sonic:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "sonic:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "sonic:TRIG", "esp:5", "green", [ "v0" ] ],
+    [ "sonic:ECHO", "esp:18", "blue", [ "v0" ] ],
+    [ "arm:V+", "esp:5V", "red", [ "v0" ] ],
+    [ "arm:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "arm:PWM", "esp:13", "orange", [ "v0" ] ],
+    [ "camSim:VCC", "esp:3V3", "red", [ "h-20", "v-50" ] ],
+    [ "camSim:GND", "esp:GND.3", "black", [ "h-20", "v-50" ] ],
+    [ "camSim:SIG", "esp:34", "purple", [ "h20", "v-50" ] ],
+    [ "buzz:2", "esp:GND.3", "black", [ "v0" ] ],
+    [ "buzz:1", "esp:15", "red", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

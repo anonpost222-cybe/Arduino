@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "author": "Smart Chef",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "board-ssd1306", "id": "oled", "top": -80, "left": 50, "attrs": { "i2cAddress": "0x3c" } },
+    { "type": "wokwi-potentiometer", "id": "potWeight", "top": 100, "left": -60, "attrs": { "label": "Weight (g)" } },
+    { "type": "wokwi-potentiometer", "id": "potTemp", "top": 100, "left": 80, "attrs": { "label": "Probe Temp (C)" } },
+    { "type": "wokwi-buzzer", "id": "buzz", "top": -30, "left": 180, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "oled:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "oled:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "oled:SDA", "esp:21", "purple", [ "v0" ] ],
+    [ "oled:SCL", "esp:22", "cyan", [ "v0" ] ],
+    [ "potWeight:VCC", "esp:3V3", "red", [ "h-20", "v-50" ] ],
+    [ "potWeight:GND", "esp:GND.2", "black", [ "h-20", "v-50" ] ],
+    [ "potWeight:SIG", "esp:34", "orange", [ "h20", "v-50" ] ],
+    [ "potTemp:VCC", "esp:3V3", "red", [ "h-20", "v-50" ] ],
+    [ "potTemp:GND", "esp:GND.3", "black", [ "h-20", "v-50" ] ],
+    [ "potTemp:SIG", "esp:35", "blue", [ "h20", "v-50" ] ],
+    [ "buzz:1", "esp:15", "red", [ "v0" ] ],
+    [ "buzz:2", "esp:GND.1", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "author": "TinyML Wand",
+  "editor": "wokwi",
+  "firmware": ".pio/build/esp32doit-devkit-v1/firmware.bin",
+  "elf": ".pio/build/esp32doit-devkit-v1/firmware.elf",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-mpu6050", "id": "gyro", "top": -60, "left": 50, "attrs": {} },
+    { "type": "wokwi-led", "id": "ledR", "top": 60, "left": 120, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "ledG", "top": 60, "left": 150, "attrs": { "color": "green" } },
+    { "type": "wokwi-led", "id": "ledB", "top": 60, "left": 180, "attrs": { "color": "blue" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 100, "left": 120, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 100, "left": 150, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r3", "top": 100, "left": 180, "attrs": { "value": "220" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "gyro:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "gyro:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "gyro:SDA", "esp:21", "purple", [ "v0" ] ],
+    [ "gyro:SCL", "esp:22", "cyan", [ "v0" ] ],
+    [ "ledR:A", "esp:15", "red", [ "v0" ] ],
+    [ "ledG:A", "esp:2", "green", [ "v0" ] ],
+    [ "ledB:A", "esp:4", "blue", [ "v0" ] ],
+    [ "ledR:C", "r1:1", "black", [ "v0" ] ],
+    [ "ledG:C", "r2:1", "black", [ "v0" ] ],
+    [ "ledB:C", "r3:1", "black", [ "v0" ] ],
+    [ "r1:2", "esp:GND.2", "black", [ "v0" ] ],
+    [ "r2:2", "esp:GND.2", "black", [ "v0" ] ],
+    [ "r3:2", "esp:GND.2", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "author": "Med Security",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "board-ssd1306", "id": "oled", "top": -80, "left": 50, "attrs": { "i2cAddress": "0x3c" } },
+    { "type": "wokwi-membrane-keypad", "id": "keypad", "top": 100, "left": 0, "attrs": {} },
+    { "type": "wokwi-led", "id": "ledG", "top": 0, "left": 150, "attrs": { "color": "green" } },
+    { "type": "wokwi-led", "id": "ledR", "top": 30, "left": 150, "attrs": { "color": "red" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "oled:SDA", "esp:21", "purple", [ "v0" ] ],
+    [ "oled:SCL", "esp:22", "cyan", [ "v0" ] ],
+    [ "oled:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "oled:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "keypad:R1", "esp:13", "blue", [ "v0" ] ],
+    [ "keypad:R2", "esp:12", "blue", [ "v0" ] ],
+    [ "keypad:R3", "esp:14", "blue", [ "v0" ] ],
+    [ "keypad:R4", "esp:27", "blue", [ "v0" ] ],
+    [ "keypad:C1", "esp:26", "green", [ "v0" ] ],
+    [ "keypad:C2", "esp:25", "green", [ "v0" ] ],
+    [ "keypad:C3", "esp:33", "green", [ "v0" ] ],
+    [ "keypad:C4", "esp:32", "green", [ "v0" ] ],
+    [ "ledG:A", "esp:2", "green", [ "v0" ] ],
+    [ "ledR:A", "esp:4", "red", [ "v0" ] ],
+    [ "ledG:C", "esp:GND.1", "black", [ "v0" ] ],
+    [ "ledR:C", "esp:GND.1", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

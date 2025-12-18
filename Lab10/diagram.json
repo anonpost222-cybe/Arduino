@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "author": "Agro AI",
+  "editor": "wokwi",
+  "firmware": ".pio/build/esp32doit-devkit-v1/firmware.bin",
+  "elf": ".pio/build/esp32doit-devkit-v1/firmware.elf",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "board-ssd1306", "id": "oled", "top": -80, "left": 50, "attrs": { "i2cAddress": "0x3c" } },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -80, "left": 180, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "potSoil", "top": 100, "left": -60, "attrs": { "label": "Soil Moisture" } },
+    { "type": "wokwi-potentiometer", "id": "potPH", "top": 100, "left": 80, "attrs": { "label": "pH Sensor" } },
+    { "type": "wokwi-led", "id": "ledPump", "top": 100, "left": 200, "attrs": { "color": "blue", "label": "Water Pump" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 130, "left": 200, "attrs": { "value": "220" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    
+    [ "oled:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "oled:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "oled:SDA", "esp:21", "purple", [ "v0" ] ],
+    [ "oled:SCL", "esp:22", "cyan", [ "v0" ] ],
+
+    [ "dht1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "dht1:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "dht1:SDA", "esp:15", "green", [ "v0" ] ],
+
+    [ "potSoil:VCC", "esp:3V3", "red", [ "h-20", "v-50" ] ],
+    [ "potSoil:GND", "esp:GND.3", "black", [ "h-20", "v-50" ] ],
+    [ "potSoil:SIG", "esp:34", "orange", [ "h20", "v-50" ] ],
+
+    [ "potPH:VCC", "esp:3V3", "red", [ "h-20", "v-50" ] ],
+    [ "potPH:GND", "esp:GND.3", "black", [ "h-20", "v-50" ] ],
+    [ "potPH:SIG", "esp:35", "yellow", [ "h20", "v-50" ] ],
+
+    [ "ledPump:A", "esp:2", "blue", [ "v0" ] ],
+    [ "ledPump:C", "r1:1", "black", [ "v0" ] ],
+    [ "r1:2", "esp:GND.3", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
